@@ -4,161 +4,211 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rizwan Shah | Portfolio</title>
+
     <!-- Google Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- Updated Font Awesome CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <!-- Your stylesheet -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&family=Roboto+Mono&display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css" />
+
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   </head>
-  
-<body>
-  <div class="top-container">
-    <img class="top-cloud" src="images/cloud.png" alt="cloud-img" />
-    <h1>I'm Rizwan.</h1>
-    <h2><span id="typed-text"></span></h2>
-    <img src="images/mountain.png" alt="mountain-img" />
+
+  <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Rizwan Shah</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link" href="#certifications">C&A</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Top container -->
+    <div class="top-container">
+      <img class="top-cloud" src="images/cloud.png" alt="cloud-img" />
+      <h1>I'm Rizwan.</h1>
+      <h2><span id="typed-text"></span></h2>
+      <img class="mountain-img" src="images/mountain.png" alt="mountain-img" />
+    </div>
+
+    <!-- Main content -->
+    <main class="middle-container">
+      <section id="profile" class="section">
+        <div class="container">
+          <img class="profile-img" src="images/profile.jpg" alt="profile-img" />
+          <h2>Hello.</h2>
+          <p class="intro">
+            A motivated and curious individual from Tezpur University with a passion for learning, problem-solving, and exploring new ideas.
+          </p>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2>My Projects</h2>
+          <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="project-card">
+                <h3>Web Technologies Project</h3>
+                <p>Multiple types of Web Technologies projects</p>
+                <a class="btn" href="https://github.com/rizwanshah9792/Web-Technologies" target="_blank" rel="noopener">GitHub Repo</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="project-card">
+                <h3>Pattern Recognition</h3>
+                <p>Machine learning, Neural Network, and data analysis.</p>
+                <a class="btn" href="https://github.com/rizwanshah9792/Pattern-Recognition" target="_blank" rel="noopener">GitHub Repo</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="project-card">
+                <h3>Operating Systems</h3>
+                <p>Process Creations, Interprocess Communications, Server-Client, etc.</p>
+                <a class="btn" href="https://github.com/rizwanshah9792/Operating-Systems" target="_blank" rel="noopener">GitHub Repo</a>
+              </div>
+            </div>
+            <div class="col">
+              <div class="project-card">
+                <h3>DBMS (Real-Life Application)</h3>
+                <p>Medical-based project.</p>
+                <a class="btn" href="https://github.com/yourprofile/dbms-real-life" target="_blank" rel="noopener">GitHub Repo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about-section">
+        <div class="container">
+          <h2>About Me</h2>
+          <p class="intro">Hello! I'm Rizwan, a passionate web developer with a strong foundation in front-end technologies and a curiosity for back-end development.</p>
+          <table class="table about-table">
+            <tbody>
+                <td class="skills">
+                  <strong>Languages:</strong> HTML, CSS, JavaScript, Python, C, C++
+                </td>
+              </tr>
+              <tr>
+                <td class="skills">
+                  <strong>Tools:</strong> Git, VSCode, M365
+                </td>
+              </tr>
+              <tr>
+                <td class="skills">
+                  <strong>Photography:</strong> Photography, Video Editing
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Achievements Section -->
+      <section class="achievements-section">
+        <div class="container">
+          <h2>Certification and Achievements</h2>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Platform</th>
+                <th scope="col">Achievement</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="platform"><strong>Google</strong></td> 
+                <td>Technical Support Fundamentals Certification</td>
+              </tr>
+              <tr>
+                <td class="platform"><strong>FEA</strong></td>
+                <td>Master Teacher & Team Leadership Certificate</td>
+              </tr>
+              <tr>
+                <td class="platform"><strong>University of Michigan</strong></td>
+                <td>Python Data Structures Certification</td>
+              </tr>
+              <tr>
+                <td class="platform"><strong>Udemy</strong></td>
+                <td>Web Development Bootcamp Completion</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Featured Work Section -->
+      <section class="featured-work-section" id="featured-work">
+        <div class="container">
+          <h2>Featured Work</h2>
+          <div class="row">
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f0.jpg" alt="Takla Pahaar" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>Takla Pahaar</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f3.jpg" alt="Tea Garden" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>Tea Garden</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f2.jpg" alt="Tezpur Town" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>Tezpur Town</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f1.jpg" alt="Sessa" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>Sessa</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f4.jpg" alt="TU Niribhili" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>TU Niribhili</p>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 work-item">
+              <img src="images/f5.jpg" alt="Jiya Bareli" onerror="this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';">
+              <p>Jiya Bareli</p>
+            </div>
+            
+          </div>
+        </div>
+      </section>
   </div>
 
-  <main class="middle-container">
-    <!-- Profile Section -->
-    <section class="profile-section section">
-      <div class="profile">
-        <img class="profile-img" src="images/profile.jpg" alt="profile-img" />
-        <h2>Hello.</h2>
-        <p class="intro">
-          A motivated and curious individual from Tezpur University with a passion for learning, problem-solving, and exploring new ideas. Committed to personal growth and always eager to take on new challenges.        </p>
-      </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section section">
-      <h2>My Services</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <h3>Video and Photo Editing</h3>
-          <p>Editing videos and photos using various software tools, enhancing visual storytelling.</p>
+      <section id="contact" class="section">
+        <div class="container">
+          <h2>Get In Touch</h2>
+          <p><a class="btn" href="mailto:your-email@example.com"><i class="fas fa-envelope"></i> Email Me</a></p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/r.shah_1.0/" target="_blank" rel="noopener" title="Instagram Profile"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/rizwanshah9792" target="_blank" rel="noopener" title="GitHub Profile"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/rizwan-shah-574851166/" target="_blank" rel="noopener" title="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+          </div>
         </div>
-        <div class="service-card">
-          <h3>Web Development</h3>
-          <p>Building responsive and dynamic websites using HTML, CSS, and JavaScript.</p>
-        </div>
+      </section>
+    </main>
 
-      </div>
-    </section>
+    <div class="bottom-container">
+      <p>© 2025 Rizwan Shah.</p>
+    </div>
 
-    <!-- Projects Section -->
-    <section class="projects-section section">
-      <h2>My Projects</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Web Technologies Project</h3>
-          <p>Multiples types of Web Technologies projects</p>
-          <a class="btn" href="https://github.com/rizwanshah9792/Web-Technologies" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-        </div>
-        <div class="project-card">
-          <h3>Pattern Recognition</h3>
-          <p>Machine learning, Neural Network, and data analysis.</p>
-          <a class="btn" href="https://github.com/rizwanshah9792/Pattern-Recognition" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-        </div>
-        <div class="project-card">
-          <h3>Operating Systems</h3>
-          <p>Process Creations, Interprocess Communications, Sever-Client, and etc.</p>
-          <a class="btn" href="https://github.com/rizwanshah9792/Operating-Systems" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-        </div>
-        <div class="project-card">
-          <h3>DBMS (Real-Life Application)</h3>
-          <p>Medical Based project.</p>
-          <a class="btn" href="https://github.com/yourprofile/dbms-real-life" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section section">
-      <h2>About Me</h2>
-      <p>
-        Hello! I'm Rizwan, a passionate web developer with a strong foundation in front-end technologies and a curiosity for back-end development.
-      </p>
-      <ul>
-        <li><strong>Languages:</strong> HTML, CSS, JavaScript, Python, C, C++</li>
-        <li><strong>Tools:</strong> Git, VSCode, M365</li>
-      </ul>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="experience-section section">
-      <h2>Experience</h2>
-      <ul>
-        <li><strong>Volunteer Developer:</strong> Contributed to open-source projects and assisted non-profits with website improvements.</li>
-        <li><strong>Part of Licen Grocery:</strong> A online Grocery shop.</li>
-        <li><strong>Part of FEA:</strong> Freedom Employability Academy</li>
-      </ul>
-    </section>
-
-    <!-- Education Section -->
-    <section class="education-section section">
-      <h2>Education</h2>
-      <ul>
-        <li><strong>MCA, Tezpur University</strong> (2024 – Present)</li>
-        <li><strong>BCA, Maulana Azad College of Arts, Science and Commerce</strong> (2019 – 2022)</li>
-      </ul>
-    </section>
-
-    <!-- Hobbies Section -->
-    <section class="hobbies-section section">
-      <h2>Hobbies</h2>
-      <ul class="hobbies-list">
-        <li>Engaging in coding challenges, exploring new cycling routes, swimming for fitness, 
-          <br>and reading both technical books and literature.</li>
-      </ul>
-    </section>
-
-    <section class="achievements-section section">
-      <h2>Certifications & Achievements</h2>
-      <ul>
-        <li><strong>Google (Coursera):</strong> Technical Support Fundamentals</li>
-        <li><strong>Google (Coursera):</strong> Crash Course on Python</li>
-        <li><strong>University of Michigan (Coursera):</strong> Python Data Structures</li>
-        <li><strong>FEA:</strong> 3× Master Teacher Certificate for peer learning and engaging classroom contribution</li>
-        <li><strong>FEA:</strong> 3× Team Certificate (All Ears, Page Turner Adventure, Crescendo Contest)</li>
-      </ul>
-    </section>
-    
-
-    <!-- Contact Section -->
-    <section class="contact-section section">
-      <h2>Get In Touch</h2>
-      <p><a class="btn" href="mailto:csm24004@tezu.ac.in" rel="noopener noreferrer">
-        <i class="fas fa-envelope"></i> csm24004@tezu.ac.in
-      </a></p>
-      <div class="social-links">
-        <a href="https://www.instagram.com/r.shah_1.0/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://github.com/rizwanshah9792" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/rizwan-shah-574851166/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </section>
-  </main>
-
-  <div class="bottom-container">
-    <p>© 2025 Rizwan Shah.</p>
-  </div>
-
-  <script src="script.js"></script>
-</body>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
