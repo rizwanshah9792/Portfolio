@@ -31,3 +31,26 @@ const typed = new Typed("#typed-text", {
   sections.forEach(section => {
     observer.observe(section);
   });
+  
+  // Navbar scroll effect
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('solid');
+  } else {
+    navbar.classList.remove('solid');
+  }
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('.navbar-nav a').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    targetElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+});
