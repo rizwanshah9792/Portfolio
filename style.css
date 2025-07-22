@@ -1,7 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap');
+/* ==========================================================================
+   1. Imports & General Styles
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono:wght@400;700&family=Sacramento&display=swap');
 
 html {
   font-size: 18px;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -12,12 +17,7 @@ body {
   background-color: #f8f9fa;
 }
 
-.top-container {
-  background-color: #E4F9F5;
-  position: relative;
-  padding: 100px 20px;
-}
-
+/* Typography */
 h1 {
   font-family: 'Sacramento', cursive;
   color: #11999E;
@@ -26,13 +26,32 @@ h1 {
 }
 
 h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  display: inline-block;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background-color: #66BFBF;
+  transition: width 0.4s ease-in-out;
+}
+
+.section.visible h2::after {
+   width: 70%;
+}
+
 
 h3 {
   font-family: 'Montserrat', sans-serif;
@@ -49,11 +68,38 @@ p, li {
   color: #555;
 }
 
+/* ==========================================================================
+   2. Layout & Structure
+   ========================================================================== */
+
+.top-container {
+  background-color: #E4F9F5;
+  position: relative;
+  padding: 100px 20px;
+  overflow: hidden; /* Hide overflowing clouds */
+}
+
+.top-container .top-cloud {
+  position: absolute;
+  top: 90px; /* Increased from 50px to clear the fixed navbar */
+  right: 50px;
+  animation: drift 20s linear infinite alternate;
+  width: 150px;
+  opacity: 0.7;
+}
+
+.top-container .mountain-img {
+    position: relative;
+    bottom: -5px; /* Adjust if there's a gap */
+}
 
 .section {
-  padding: 80px 0;
+  padding: 80px 20px;
   background-color: #fff;
+  opacity: 0;
+  transform: translateY(20px);
   transition: opacity 0.6s ease, transform 0.6s ease;
+  margin-bottom: 20px;
 }
 
 .section:nth-child(even) {
@@ -65,115 +111,149 @@ p, li {
   transform: translateY(0);
 }
 
-.section {
-  opacity: 0;
-  transform: translateY(20px);
-  margin-bottom: 20px;
+/* ==========================================================================
+   3. Navigation Bar
+   ========================================================================== */
+
+.navbar {
+  background: linear-gradient(135deg, #11999E 0%, #66BFBF 100%);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+  transform: translateY(-100%);
+  animation: navbarSlideIn 0.5s ease-out 0.5s forwards;
 }
-/* Profile image*/
+
+.navbar.solid {
+  background: #11999E;
+  box-shadow: 0 3px 20px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+.navbar-brand:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.navbar-brand i {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-right: 0.8rem;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.navbar-brand:hover i {
+  color: #66BFBF;
+  transform: rotate(15deg) scale(1.2);
+  text-shadow: 0 4px 8px rgba(17,153,158,0.3);
+}
+
+.navbar-brand span {
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  position: relative;
+  transition: all 0.3s ease;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.navbar-brand:hover span {
+  color: #E3F6F5;
+  letter-spacing: 1px;
+}
+
+.navbar-nav .nav-link {
+  position: relative;
+  color: rgba(255,255,255,0.9) !important;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.navbar-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  width: 100%;
+}
+
+/* ==========================================================================
+   4. Components
+   ========================================================================== */
+
+/* Profile Picture Flip */
+.profile-flip-container {
+    perspective: 1000px;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto 1rem auto;
+    cursor: pointer;
+}
+
+.profile-flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.profile-flip-container.flipped .profile-flipper {
+    transform: rotateY(180deg);
+}
+
+.profile-front, .profile-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 50%;
+}
+
+.profile-back {
+    background: linear-gradient(135deg, #11999E 0%, #66BFBF 100%);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
 .profile-img {
-  width: 250px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid #11999E;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin-bottom: 1rem;
-  cursor: pointer;
-  position: relative;
-  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  transform-style: preserve-3d;
-  animation: float 2s ease-in-out infinite;
 }
 
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0) rotate(0deg); 
-  }
-  30%, 70% { 
-    transform: translateY(-15px) rotate(3deg); 
-  }
-}
 
-/* Hover Effects */
-.profile-img:hover {
-  transform: scale(1.05) rotate(5deg);
-  box-shadow: 0 8px 24px rgba(17, 153, 158, 0.4);
-  animation-play-state: paused;
-}
-
-/* Glowing Border Animation */
-.profile-img::before {
-  content: '';
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  right: -6px;
-  bottom: -6px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  background: linear-gradient(45deg, #11999E, #66BFBF, #E3F6F5) border-box;
-  -webkit-mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
-  mask: 
-     linear-gradient(#fff 0 0) content-box, 
-     linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  animation: rotateBorder 3s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-@keyframes rotateBorder {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.profile-img:hover::before {
-  opacity: 1;
-}
-
-/* Hover Sparkle Effect */
-.profile-img::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 50%, 
-    rgba(255,255,255,0.4) 0%, 
-    rgba(255,255,255,0) 70%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.profile-img:hover::after {
-  opacity: 1;
-}
-
-/* Click Animation */
-.profile-img:active {
-  transform: scale(0.95);
-  transition: transform 0.2s ease;
-}
-
-/* 3D Perspective Effect */
-@media (hover: hover) {
-  .profile-img {
-    perspective: 1000px;
-  }
-  
-  .profile-img:hover {
-    transform: scale(1.05) rotateX(10deg) rotateY(10deg);
-  }
-}
-
-/* Project Card with Advanced Animations */
+/* Project Card */
 .project-card {
   position: relative;
   background: #fff;
@@ -182,10 +262,16 @@ p, li {
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   height: 100%;
-  overflow: hidden;
+  overflow: visible; /* Changed to allow strip to be visible */
   transform-style: preserve-3d;
 }
 
+.project-card:hover {
+  transform: translateY(-10px) scale(1.03) rotateY(-3deg); /* Added slight rotation */
+  box-shadow: 0 20px 40px rgba(17, 153, 158, 0.3);
+}
+
+/* Gradient overlay on hover */
 .project-card::before {
   content: '';
   position: absolute;
@@ -194,15 +280,33 @@ p, li {
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
-}
-
-.project-card:hover {
-  transform: translateY(-10px) scale(1.03) rotateX(2deg) rotateY(2deg);
-  box-shadow: 0 20px 40px rgba(17, 153, 158, 0.3);
+  border-radius: 15px; /* Match parent border-radius */
 }
 
 .project-card:hover::before {
   opacity: 0.1;
+}
+
+/* NEW: 3D Strip effect */
+.project-card::after {
+    content: '';
+    position: absolute;
+    top: 5%;
+    right: -5px;
+    width: 8px;
+    height: 90%;
+    background: linear-gradient(to bottom, #66BFBF, #11999E);
+    transform: skewY(45deg);
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.project-card:hover::after {
+    opacity: 1;
+    transform: skewY(0) scaleY(1.05) translateX(5px) rotateZ(2deg);
+    box-shadow: -2px 2px 10px rgba(0,0,0,0.2);
 }
 
 .project-card-content {
@@ -210,32 +314,7 @@ p, li {
   z-index: 1;
 }
 
-/* Card Image Hover Effect */
-.project-card img {
-  border-radius: 8px;
-  transform: scale(1);
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.project-card:hover img {
-  transform: scale(1.05);
-}
-
-/* Tech Stack Animation */
-.tech-stack {
-  display: flex;
-  gap: 0.5rem;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease 0.2s;
-}
-
-.project-card:hover .tech-stack {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Enhanced Animated Button */
+/* Button */
 .btn {
   position: relative;
   display: inline-flex;
@@ -256,55 +335,34 @@ p, li {
   transform-style: preserve-3d;
 }
 
-/* Button Hover Effects */
 .btn:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 25px rgba(17, 153, 158, 0.5);
   letter-spacing: 1px;
 }
 
-/* Shimmer Effect */
 .btn::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, 
-    transparent 25%,
-    rgba(255,255,255,0.1) 50%,
-    transparent 75%);
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%);
   transform: rotate(45deg);
   animation: shimmer 4s infinite linear;
   opacity: 0.3;
 }
 
-@keyframes shimmer {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-/* Click Ripple Effect */
 .btn:active::before {
   content: '';
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 300px;
-  height: 300px;
+  top: 50%; left: 50%;
+  width: 300px; height: 300px;
   background: rgba(255,255,255,0.2);
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
   animation: ripple 0.6s ease-out;
 }
 
-@keyframes ripple {
-  from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
-}
-
-/* Icon Animation */
 .btn .icon {
   margin-left: 10px;
   transform: translateX(0);
@@ -315,17 +373,7 @@ p, li {
   transform: translateX(5px);
 }
 
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.project-card:hover {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Social Links Animation */
+/* Social Links */
 .social-links {
   display: flex;
   justify-content: center;
@@ -343,26 +391,21 @@ p, li {
   text-decoration: none;
   padding: 0.5rem;
   border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
 }
 
-/* Hover Effect */
 .social-links a:hover {
   color: #66BFBF;
   transform: translateY(-5px) scale(1.2);
   text-shadow: 0 5px 15px rgba(17, 153, 158, 0.3);
 }
 
-/* Animated Background Circle */
 .social-links a::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 50%, 
-    rgba(17, 153, 158, 0.1) 0%, 
-    rgba(17, 153, 158, 0) 70%);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(17, 153, 158, 0.1) 0%, rgba(17, 153, 158, 0) 70%);
   border-radius: 50%;
   opacity: 0;
   transition: all 0.3s ease;
@@ -374,12 +417,10 @@ p, li {
   transform: scale(1.8);
 }
 
-/* Tooltip Text Animation */
 .social-links a::after {
   content: attr(title);
   position: absolute;
-  bottom: -30px;
-  left: 50%;
+  bottom: -30px; left: 50%;
   transform: translateX(-50%);
   background: #11999E;
   color: white;
@@ -397,47 +438,189 @@ p, li {
   bottom: -25px;
 }
 
-/* Individual Icon Animations */
-.social-links a:nth-child(1) { /* Instagram */
-  transition-delay: 0.1s;
-}
+.social-links a:nth-child(1) { animation-delay: 0.2s; transition-delay: 0.1s; }
+.social-links a:nth-child(2) { animation-delay: 0.4s; }
+.social-links a:nth-child(3) { animation-delay: 0.6s; }
+.social-links a:nth-child(4) { animation-delay: 0.8s; }
+
 .social-links a:nth-child(1):hover {
   background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
+.social-links a:nth-child(2):hover { color: #333; }
+.social-links a:nth-child(3):hover { color: #0077b5; }
+.social-links a:nth-child(4):hover { color: #000; }
 
-.social-links a:nth-child(2):hover { /* GitHub */
-  color: #333;
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #11999E;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.4s ease;
+  z-index: 1000;
 }
 
-.social-links a:nth-child(3):hover { /* LinkedIn */
-  color: #0077b5;
+.back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-.social-links a:nth-child(4):hover { /* X */
-  color: #000;
+.back-to-top:hover {
+  transform: scale(1.1) translateY(-5px);
 }
 
-/* Floating Animation */
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+/* ==========================================================================
+   5. Section-Specific Styles
+   ========================================================================== */
+
+/* About Section */
+.about-section {
+  padding: 3rem 0;
+}
+.about-table tbody tr {
+    transition: background-color 0.3s ease;
+}
+.about-table tbody tr:hover {
+    background-color: #e9f7f7;
 }
 
-.social-links a {
-  animation: float 3s ease-in-out infinite;
+/* Achievements Section */
+.achievements-section {
+  padding: 3rem 0;
 }
 
-.social-links a:nth-child(1) { animation-delay: 0.2s; }
-.social-links a:nth-child(2) { animation-delay: 0.4s; }
-.social-links a:nth-child(3) { animation-delay: 0.6s; }
-.social-links a:nth-child(4) { animation-delay: 0.8s; }
+.table {
+  border-color: #11999E;
+  font-size: 0.9rem;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
+.table th, .table td {
+  padding: 0.75rem;
+  vertical-align: middle;
+}
 
-/* bottom-container */
-/* Bottom Container Animations */
+.table thead th {
+  background-color: #11999E;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+}
+
+.table tbody tr:hover {
+  background-color: #e9f7f7;
+  transform: scale(1.02);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.platform strong {
+  color: #2c3e50;
+}
+
+/* Featured Work Slider */
+.featured-work-section {
+    overflow: hidden;
+    padding: 80px 0;
+}
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Increased height for bigger cards */
+    perspective: 1200px; /* Increased perspective for more depth */
+    margin-top: 2rem;
+}
+
+.slider {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.slide {
+    position: absolute;
+    width: 380px; /* Increased width */
+    height: 450px; /* Increased height */
+    top: 10px;
+    left: 50%;
+    margin-left: -190px; /* Half of new width */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background: #fff;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    -webkit-backface-visibility: hidden; /* Helps with rendering flicker */
+    backface-visibility: hidden;
+}
+
+.slide img {
+    width: 100%;
+    height: 85%;
+    object-fit: cover;
+}
+
+.slide-caption {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 15px;
+    font-weight: 600;
+    color: #2c3e50;
+    background-color: #fff;
+    height: 15%;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    color: #11999E;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.slider-btn:hover {
+    background-color: #11999E;
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+/* ==========================================================================
+   6. Footer
+   ========================================================================== */
+
 .bottom-container {
   background: linear-gradient(135deg, #11999E 0%, #66BFBF 100%);
   padding: 30px 0;
@@ -447,31 +630,21 @@ p, li {
   transition: all 0.5s ease;
 }
 
-/* Animated Background */
+.bottom-container:hover {
+  box-shadow: 0 -5px 25px rgba(17,153,158,0.3);
+}
+
 .bottom-container::before {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 25%,
-    rgba(255,255,255,0.1) 50%,
-    transparent 75%
-  );
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 50%, transparent 75%);
   transform: rotate(45deg);
   animation: footerShimmer 6s infinite linear;
   z-index: 0;
 }
 
-@keyframes footerShimmer {
-  0% { transform: translateX(-100%) rotate(45deg); }
-  100% { transform: translateX(100%) rotate(45deg); }
-}
-
-/* Content Styling */
 .bottom-container p {
   position: relative;
   z-index: 1;
@@ -481,33 +654,16 @@ p, li {
   display: inline-block;
 }
 
-/* Hover Effects */
-.bottom-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 -5px 25px rgba(17,153,158,0.3);
-}
-
 .bottom-container p:hover {
   transform: scale(1.05);
   text-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Floating Animation */
-@keyframes floatUp {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-.bottom-container {
-  animation: floatUp 4s ease-in-out infinite;
-}
-
-/* Additional Elements */
 .footer-links {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .footer-links a {
@@ -532,327 +688,113 @@ p, li {
   width: 100%;
 }
 
-/* Back to Top Button */
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #11999E;
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(100px);
-  transition: all 0.4s ease;
+/* ==========================================================================
+   7. Animations & Keyframes
+   ========================================================================== */
+@keyframes drift {
+    from { transform: translateX(-50px); }
+    to { transform: translateX(50px); }
 }
 
-.back-to-top.show {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
-.back-to-top:hover {
-  transform: scale(1.1) translateY(-5px);
+@keyframes rotateBorder {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.navbar {
-  background-color: #f8f9fa;
-  padding: 0.5rem 1rem;
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }
 
-.navbar-brand {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
-  font-weight: bold;
+@keyframes ripple {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  to { transform: translate(-50%, -50%) scale(2); opacity: 0; }
 }
 
-.navbar-nav .nav-link {
-  font-size: 0.9rem;
-}
-
-/* Certification an Achievements */
-.achievements-section {
-    padding: 3rem 0;
-    background-color: #f8f9fa;
-  }
-  .achievements-section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  .table {
-    border-color: #11999E;
-    font-size: 0.9rem;
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  .table th, .table td {
-    padding: 0.75rem;
-    vertical-align: middle;
-  }
-  .table thead th {
-    background-color: #11999E;
-    color: #fff;
-    font-weight: 600;
-    border: none;
-  }
-  .table tbody tr:hover {
-    background-color: #e9f7f7;
-  }
-  .platform strong {
-    color: #2c3e50;
-  }
-  @media (max-width: 576px) {
-    .table {
-      font-size: 0.8rem;
-    }
-    .table th, .table td {
-      padding: 0.5rem;
-    }
-  }
-
-/* Featured Work */
-.featured-work-section {
-    padding: 3rem 0;
-    background-color: #fff;
-  }
-  .featured-work-section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  .work-item {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  .work-item img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border: 2px solid #11999E;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  .work-item img:hover {
-    transform: scale(1.05);
-  }
-  .work-item p {
-    font-size: 0.9rem;
-    color: #2c3e50;
-    margin-top: 0.5rem;
-  }
-  @media (max-width: 576px) {
-    .work-item img {
-      width: 150px;
-      height: 150px;
-    }
-    .work-item p {
-      font-size: 0.8rem;
-    }
-  }
-
-  /* About Section */
-  .about-section {
-    padding: 3rem 0;
-    background-color: #f8f9fa;
-  }
-  .about-section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-  .about-table {
-    font-size: 1rem;
-    background-color: transparent;
-    border: none;
-    margin: 0 auto;
-    max-width: 600px;
-  }
-  .about-table td {
-    padding: 0.75rem;
-    border: none;
-    text-align: center;
-    color: #2c3e50;
-  }
-  .about-table .intro {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  .about-table .skills strong {
-    color: #11999E;
-    font-weight: 600;
-  }
-  .about-table .skills {
-    font-size: 0.95rem;
-  }
-  @media (max-width: 576px) {
-    .about-table {
-      font-size: 0.9rem;
-    }
-    .about-table td {
-      padding: 0.5rem;
-    }
-  }
-
-@media (max-width: 768px) {
-  .profile-img {
-    width: 200px;
-    height: 200px;
-  }
-
-  .mountain-img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
-
-  h1 {
-    font-size: 3rem;
-  }
-
-  h2 {
-    font-size: 2rem;
-  }
-
-  p, li {
-    font-size: 1rem;
-  }
-
-  .navbar {
-    padding: 0.25rem 0.5rem;
-  }
-
-  .navbar-nav .nav-link {
-    font-size: 0.8rem;
-  }
-
-  .sidenav {
-    display: none;
-  }
-}
-
-/* ========== Navigation Bar Animations ========== */
-.navbar {
-  background: linear-gradient(135deg, #11999E 0%, #66BFBF 100%);
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-}
-
-/* Solid background on scroll */
-.navbar.solid {
-  background: #11999E;
-  box-shadow: 0 3px 20px rgba(0,0,0,0.2);
-}
-
-/* Nav link hover animation */
-.navbar-nav .nav-link {
-  position: relative;
-  color: rgba(255,255,255,0.9) !important;
-  transition: all 0.3s ease;
-}
-
-.navbar-nav .nav-link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  transition: width 0.3s ease;
-}
-
-.navbar-nav .nav-link:hover::after {
-  width: 100%;
-}
-
-/* Navbar brand hover effect */
-.navbar-brand {
-  transition: transform 0.3s ease;
-}
-
-.navbar-brand:hover {
-  transform: scale(1.05);
-}
-
-/* Navbar entrance animation */
-.navbar {
-  transform: translateY(-100%);
-  animation: navbarSlideIn 0.5s ease-out forwards;
-  animation-delay: 0.5s;
+@keyframes footerShimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
 }
 
 @keyframes navbarSlideIn {
-  to {
-    transform: translateY(0);
-  }
+  to { transform: translateY(0); }
 }
 
-/* ========== High-Contrast Logo Design ========== */
-.navbar-brand {
-  display: flex;
-  align-items: center;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.navbar-brand i {
-  color: #fff; /* White icon */
-  font-size: 1.8rem;
-  margin-right: 0.8rem;
-  transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-.navbar-brand span {
-  color: #fff; /* White text */
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  position: relative;
-  transition: all 0.3s ease;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
-
-/* Hover Effects */
-.navbar-brand:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.navbar-brand:hover i {
-  color: #66BFBF;
-  transform: rotate(15deg) scale(1.2);
-  text-shadow: 0 4px 8px rgba(17,153,158,0.3);
-}
-
-.navbar-brand:hover span {
-  color: #E3F6F5; /* Light cyan on hover */
-  letter-spacing: 1px;
-}
-
-/* Animation for Continuous Attention */
 @keyframes logo-pulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.02); }
 }
 
-.navbar-brand {
-  animation: logo-pulse 3s ease-in-out infinite;
+/* ==========================================================================
+   8. Media Queries & Responsive Design
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    .slide {
+        width: 280px; /* Adjusted for tablets */
+        height: 360px;
+        margin-left: -140px;
+    }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2rem; }
+  p, li { font-size: 1rem; }
+
+  .profile-flip-container {
+    width: 200px;
+    height: 200px;
+  }
+  .profile-back {
+    font-size: 4rem;
+  }
+
+  .mountain-img {
+    width: 100%;
+    height: auto;
+  }
+  .navbar {
+    padding: 0.25rem 0.5rem;
+  }
+  .navbar-nav .nav-link {
+    font-size: 0.8rem;
+  }
+  .slider-container {
+    height: 400px; /* Adjusted for smaller screens */
+  }
+  .slide {
+    width: 220px;
+    height: 300px;
+    margin-left: -110px;
+  }
+   .slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  .prev-btn { left: 0; }
+  .next-btn { right: 0; }
+}
+
+@media (max-width: 576px) {
+  .table {
+    font-size: 0.8rem;
+  }
+  .table th, .table td {
+    padding: 0.5rem;
+  }
+  .slider-container {
+    height: 350px;
+  }
+   .slide {
+    width: 200px;
+    height: 270px;
+    margin-left: -100px;
+  }
 }
