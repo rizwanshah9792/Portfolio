@@ -1,0 +1,178 @@
+body {
+    background-color: #1a202c;
+    color: #e2e8f0;
+}
+
+.top-container {
+    background-color: #2d3748;
+}
+
+h1 {
+    color: #63b3ed;
+}
+
+h2 {
+    color: #9f7aea;
+}
+
+h3 {
+    color: #a0aec0;
+}
+
+p, li {
+    color: #cbd5e0;
+}
+
+.section {
+    background-color: #2d3748;
+}
+
+.section:nth-child(even) {
+    background-color: #1a202c;
+}
+
+.profile-img {
+    border-color: #63b3ed;
+}
+
+.profile-back {
+    background: linear-gradient(135deg, #63b3ed 0%, #9f7aea 100%);
+    border-color: #fff;
+}
+
+.project-card {
+    background: #2d3748;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.project-card:hover {
+    box-shadow: 0 20px 40px rgba(99, 179, 237, 0.2);
+}
+
+.project-card::before {
+    background: linear-gradient(45deg, #63b3ed, #9f7aea);
+}
+
+.project-card::after {
+    background: linear-gradient(to bottom, #9f7aea, #63b3ed);
+}
+
+.btn {
+    background: linear-gradient(135deg, #63b3ed 0%, #9f7aea 100%);
+    box-shadow: 0 4px 15px rgba(99, 179, 237, 0.2);
+}
+
+.btn:hover {
+    box-shadow: 0 8px 25px rgba(99, 179, 237, 0.3);
+}
+
+.social-links a {
+    color: #63b3ed;
+}
+
+.social-links a:hover {
+    color: #9f7aea;
+    text-shadow: 0 5px 15px rgba(99, 179, 237, 0.2);
+}
+
+.social-links a:hover::before {
+    background: radial-gradient(circle at 50% 50%, rgba(99, 179, 237, 0.1) 0%, rgba(99, 179, 237, 0) 70%);
+}
+
+.social-links a:hover::after {
+    background: #63b3ed;
+}
+
+.social-links a:nth-child(2):hover {
+    color: #e2e8f0;
+}
+
+.social-links a:nth-child(3):hover {
+    color: #63b3ed;
+}
+
+.social-links a:nth-child(4):hover {
+    color: #e2e8f0;
+}
+
+.bottom-container {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+}
+
+.bottom-container:hover {
+    box-shadow: 0 -5px 25px rgba(99, 179, 237, 0.2);
+}
+
+.back-to-top {
+    background: #63b3ed;
+    color: #1a202c;
+}
+
+.navbar {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+}
+
+.navbar.solid {
+    background: #1a202c;
+}
+
+.navbar-brand:hover i {
+    color: #9f7aea;
+}
+
+.navbar-brand:hover span {
+    color: #e2e8f0;
+}
+
+.navbar-nav .nav-link::after {
+    background-color: #9f7aea;
+}
+
+.table {
+    border-color: #63b3ed;
+    background-color: #2d3748;
+}
+
+.table thead th {
+    background-color: #63b3ed;
+    color: #1a202c;
+}
+
+.table tbody tr:hover {
+    background-color: #4a5568;
+}
+
+.platform strong {
+    color: #e2e8f0;
+}
+
+.work-item img {
+    border-color: #63b3ed;
+}
+
+.work-item p {
+    color: #e2e8f0;
+}
+
+.about-table tbody tr:hover {
+    background-color: #4a5568;
+}
+
+.slider-btn {
+    background-color: rgba(45, 55, 72, 0.7);
+    color: #63b3ed;
+}
+
+.slider-btn:hover {
+    background-color: #63b3ed;
+    color: #1a202c;
+}
+
+.slide {
+    background: #2d3748;
+}
+
+.slide-caption {
+    color: #e2e8f0;
+    background-color: #2d3748;
+}
