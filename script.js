@@ -1,9 +1,5 @@
-// Wait for the DOM to be fully loaded before running scripts
 document.addEventListener('DOMContentLoaded', () => {
 
-  /**
-   * Initializes the Typed.js animation for the hero section.
-   */
   const initTypedJs = () => {
     const typedElement = document.querySelector("#typed-text");
     if (typedElement) {
@@ -16,9 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  /**
-   * Initializes the Intersection Observer to animate sections on scroll.
-   */
   const initScrollAnimations = () => {
     const sections = document.querySelectorAll('.section');
     if (sections.length > 0) {
@@ -26,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Unobserve after animation to improve performance
             observer.unobserve(entry.target);
           }
         });
@@ -40,9 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  /**
-   * Adds a solid background to the navbar when scrolling down.
-   */
   const initNavbarEffect = () => {
     const navbar = document.querySelector('.navbar');
     if (navbar) {
@@ -56,9 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  /**
-   * Shows or hides the "Back to Top" button based on scroll position.
-   */
   const initBackToTopButton = () => {
     const backToTopButton = document.querySelector('.back-to-top');
     if (backToTopButton) {
@@ -72,9 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  /**
-   * Initializes the profile picture flip on click.
-   */
   const initProfileFlip = () => {
       const flipper = document.querySelector('.profile-flip-container');
       if(flipper) {
@@ -84,9 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
   };
 
-  /**
-   * Initializes the 3D "Featured Work" slider.
-   */
   const initFeaturedSlider = () => {
     const sliderContainer = document.querySelector('.slider-container');
     if (!sliderContainer) return;
@@ -99,14 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!slider || slides.length === 0 || !prevBtn || !nextBtn) return;
 
     let currentIndex = 0;
-    let isTransitioning = false; // Flag to prevent rapid clicks
+    let isTransitioning = false;
     const totalSlides = slides.length;
     const angle = 360 / totalSlides;
-    const transitionTime = 600; // Must match the CSS transition duration
+    const transitionTime = 600;
     
     const setupAndPositionSlider = () => {
         const slideWidth = slides[0].offsetWidth;
-        // This formula calculates the distance from the center to push the slides out
         const tz = Math.round((slideWidth / 2) / Math.tan(Math.PI / totalSlides));
 
         slider.style.transform = `translateZ(${-tz}px) rotateY(${-currentIndex * angle}deg)`;
@@ -123,52 +102,77 @@ document.addEventListener('DOMContentLoaded', () => {
         setupAndPositionSlider();
 
         slides.forEach((slide, index) => {
-            // This logic handles wrapping around the carousel for calculating distance
             let diff = (currentIndex - index + totalSlides) % totalSlides;
             if (diff > totalSlides / 2) {
                 diff = totalSlides - diff;
             }
 
-            // Set opacity based on distance from the current slide
             if (diff === 0) {
                 slide.style.opacity = 1;
-                slide.style.pointerEvents = 'auto'; // Center slide is clickable
+                slide.style.pointerEvents = 'auto';
             } else if (diff === 1) {
                 slide.style.opacity = 0.6;
-                slide.style.pointerEvents = 'none'; // Side slides are not
+                slide.style.pointerEvents = 'none';
             } else {
                 slide.style.opacity = 0.2;
-                slide.style.pointerEvents = 'none'; // Far slides are not
+                slide.style.pointerEvents = 'none';
             }
         });
         
-        // Release the lock after the transition is complete
         setTimeout(() => {
             isTransitioning = false;
         }, transitionTime);
     };
 
     nextBtn.addEventListener('click', () => {
-        if (isTransitioning) return; // Exit if already moving
+        if (isTransitioning) return;
         currentIndex++;
         updateSlider();
     });
 
     prevBtn.addEventListener('click', () => {
-        if (isTransitioning) return; // Exit if already moving
+        if (isTransitioning) return;
         currentIndex--;
         updateSlider();
     });
     
-    // Initial setup on window load and resize
     window.addEventListener('resize', setupAndPositionSlider);
-    setupAndPositionSlider(); // Initial setup
-    updateSlider(); // Call once to set initial opacities
+    setupAndPositionSlider();
+    updateSlider();
   };
 
-  /**
-   * Main function to initialize all scripts.
-   */
+  const initThemeSwitcher = () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkTheme = document.getElementById('dark-theme');
+    const toggleIcon = themeToggle.querySelector('i');
+
+    const setIcon = (isDark) => {
+        if (isDark) {
+            toggleIcon.classList.remove('fa-moon');
+            toggleIcon.classList.add('fa-sun');
+        } else {
+            toggleIcon.classList.remove('fa-sun');
+            toggleIcon.classList.add('fa-moon');
+        }
+    };
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        darkTheme.disabled = false;
+        setIcon(true);
+    } else {
+        darkTheme.disabled = true;
+        setIcon(false);
+    }
+
+    themeToggle.addEventListener('click', () => {
+        const isDark = !darkTheme.disabled;
+        darkTheme.disabled = isDark;
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        setIcon(!isDark);
+    });
+  };
+
   const init = () => {
     initTypedJs();
     initScrollAnimations();
@@ -176,9 +180,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initBackToTopButton();
     initProfileFlip();
     initFeaturedSlider();
+    initThemeSwitcher();
   };
 
-  // Run the initialization
   init();
 
 });
