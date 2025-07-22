@@ -5,24 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rizwan Shah | Portfolio</title>
 
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&family=Roboto+Mono&display=swap" rel="stylesheet"/>
-
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
-
-    <!-- Custom Stylesheet -->
     <link rel="stylesheet" href="style.css" />
-
-    <!-- Typed.js -->
+    <link rel="stylesheet" href="dark-theme.css" id="dark-theme" disabled />
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   </head>
 
   <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#">
@@ -39,12 +30,14 @@
             <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
             <li class="nav-item"><a class="nav-link" href="#achievements">C&A</a></li>
             <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            <li class="nav-item">
+              <button type="button" id="theme-toggle" class="btn btn-sm ms-2" title="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i><span class="visually-hidden">Toggle dark mode</span></button>
+            </li>
           </ul>
         </div>
       </div>
     </nav>
 
-    <!-- Top container -->
     <div class="top-container">
       <img class="top-cloud" src="images/cloud.png" alt="cloud-img" />
       <h1>I'm Rizwan.</h1>
@@ -52,15 +45,13 @@
       <img class="mountain-img" src="images/mountain.png" alt="mountain-img" />
     </div>
 
-    <!-- Main content -->
     <main class="middle-container">
       <section id="profile" class="section">
         <div class="container">
-          <!-- Profile Picture Flip Container -->
           <div class="profile-flip-container">
             <div class="profile-flipper">
               <div class="profile-front">
-                <img class="profile-img" src="images/profile.jpg" alt="Rizwan Shah Profile Picture" />
+                <img class="profile-img" src="images/profile1.jpg" alt="Rizwan Shah Profile Picture" />
               </div>
               <div class="profile-back">
                 <div class="profile-initials">RS</div>
@@ -69,7 +60,7 @@
           </div>
           <h2>Hello.</h2>
           <p class="intro">
-            Hello! I'm Rizwan, a passionate web developer pursuing a Master's in Computer Applications (MCA) at Tezpur University. I specialize in front-end technologies and have a strong foundation in back-end development.
+            Hello! I'm Rizwan, a passionate web developer and recent graduate of Tezpur University. I specialize in front-end technologies and have a strong foundation in back-end development.
           </p>
         </div>
       </section>
@@ -80,30 +71,38 @@
           <div class="row row-cols-1 row-cols-md-2 g-4">
             <div class="col">
               <div class="project-card">
-                <h3>Web Technologies Project</h3>
-                <p>A collection of projects demonstrating proficiency in various web technologies, including HTML, CSS, JavaScript, and Bootstrap.</p>
-                <a class="btn" href="https://github.com/rizwanshah9792/Web-Technologies" target="_blank" rel="noopener">GitHub Repo</a>
+                <div class="project-card-content">
+                  <h3>Web Technologies Project</h3>
+                  <p>A collection of projects demonstrating proficiency in various web technologies, including HTML, CSS, JavaScript, and Bootstrap.</p>
+                  <a class="btn" href="https://github.com/rizwanshah9792/Web-Technologies" target="_blank" rel="noopener">GitHub Repo</a>
+                </div>
               </div>
             </div>
             <div class="col">
               <div class="project-card">
-                <h3>Pattern Recognition</h3>
-                <p>Exploring the world of machine learning with projects on neural networks and data analysis using Python.</p>
-                <a class="btn" href="https://github.com/rizwanshah9792/Pattern-Recognition" target="_blank" rel="noopener">GitHub Repo</a>
+                <div class="project-card-content">
+                  <h3>Pattern Recognition</h3>
+                  <p>Exploring the world of machine learning with projects on neural networks and data analysis using Python.</p>
+                  <a class="btn" href="https://github.com/rizwanshah9792/Pattern-Recognition" target="_blank" rel="noopener">GitHub Repo</a>
+                </div>
               </div>
             </div>
             <div class="col">
               <div class="project-card">
-                <h3>Operating Systems</h3>
-                <p>Implementations of fundamental operating system concepts like process creation, inter-process communication, and client-server models.</p>
-                <a class="btn" href="https://github.com/rizwanshah9792/Operating-Systems" target="_blank" rel="noopener">GitHub Repo</a>
+                <div class="project-card-content">
+                  <h3>Operating Systems</h3>
+                  <p>Implementations of fundamental operating system concepts like process creation, inter-process communication, and client-server models.</p>
+                  <a class="btn" href="https://github.com/rizwanshah9792/Operating-Systems" target="_blank" rel="noopener">GitHub Repo</a>
+                </div>
               </div>
             </div>
             <div class="col">
               <div class="project-card">
-                <h3>DBMS</h3>
-                <p>A variety of SQL database projects showcasing database design and management skills for different applications.</p>
-                <a class="btn" href="https://github.com/rizwanshah9792/DBMS-Projects-assignments" target="_blank" rel="noopener">GitHub Repo</a>
+                <div class="project-card-content">
+                  <h3>DBMS</h3>
+                  <p>A variety of SQL database projects showcasing database design and management skills for different applications.</p>
+                  <a class="btn" href="https://github.com/rizwanshah9792/DBMS-Projects-assignments" target="_blank" rel="noopener">GitHub Repo</a>
+                </div>
               </div>
             </div>
           </div>
@@ -116,26 +115,26 @@
           <p class="intro">Hello! I'm Rizwan, a passionate web developer with a strong foundation in front-end technologies and a curiosity for back-end development.</p>
           <table class="table about-table">
             <tbody>
-                <td class="skills">
-                  <strong>Languages:</strong> HTML, CSS, JavaScript, Python, C, C++,PHP, React
-                </td>
-              </tr>
-              <tr>
-                <td class="skills">
-                  <strong>Tools:</strong> Git, VSCode, M365
-                </td>
-              </tr>
-              <tr>
-                <td class="skills">
-                  <strong>Photography:</strong> Photography, Video Editing
-                </td>
-              </tr>
+                <tr>
+                    <td class="skills">
+                      <strong>Languages:</strong> HTML, CSS, JavaScript, Python, C, C++,PHP, React
+                    </td>
+                </tr>
+                <tr>
+                    <td class="skills">
+                      <strong>Tools:</strong> Git, VSCode, M365
+                    </td>
+                </tr>
+                <tr>
+                    <td class="skills">
+                      <strong>Photography:</strong> Photography, Video Editing
+                    </td>
+                </tr>
             </tbody>
           </table>
         </div>
       </section>
 
-      <!-- Achievements Section -->
       <section id="achievements" class="achievements-section">
         <div class="container">
           <h2>Certification and Achievements</h2>
@@ -168,7 +167,6 @@
         </div>
       </section>
 
-      <!-- Featured Work Section -->
       <section class="featured-work-section section" id="featured-work">
         <div class="container">
           <h2>Featured Work</h2>
@@ -199,8 +197,8 @@
                  <div class="slide-caption">Jiya Bareli</div>
               </div>
             </div>
-            <button class="slider-btn prev-btn" title="Previous slide"><i class="fas fa-chevron-left"></i><span class="visually-hidden">Previous slide</span></button>
-            <button class="slider-btn next-btn" title="Next slide"><i class="fas fa-chevron-right"></i><span class="visually-hidden">Next slide</span></button>
+            <button type="button" class="slider-btn prev-btn" title="Previous slide"><i class="fas fa-chevron-left" aria-hidden="true"></i><span class="visually-hidden">Previous slide</span></button>
+            <button type="button" class="slider-btn next-btn" title="Next slide"><i class="fas fa-chevron-right" aria-hidden="true"></i><span class="visually-hidden">Next slide</span></button>
           </div>
         </div>
       </section>
@@ -229,7 +227,6 @@
       </div>
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
   </body>
