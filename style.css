@@ -81,7 +81,7 @@ p, li {
 
 .top-container .top-cloud {
   position: absolute;
-  top: 90px; /* Increased from 50px to clear the fixed navbar */
+  top: 90px;
   right: 50px;
   animation: drift 20s linear infinite alternate;
   width: 150px;
@@ -90,7 +90,7 @@ p, li {
 
 .top-container .mountain-img {
     position: relative;
-    bottom: -5px; /* Adjust if there's a gap */
+    bottom: -5px;
 }
 
 .section {
@@ -262,16 +262,15 @@ p, li {
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   height: 100%;
-  overflow: visible; /* Changed to allow strip to be visible */
+  overflow: visible;
   transform-style: preserve-3d;
 }
 
 .project-card:hover {
-  transform: translateY(-10px) scale(1.03) rotateY(-3deg); /* Added slight rotation */
+  transform: translateY(-10px) scale(1.03) rotateY(-3deg);
   box-shadow: 0 20px 40px rgba(17, 153, 158, 0.3);
 }
 
-/* Gradient overlay on hover */
 .project-card::before {
   content: '';
   position: absolute;
@@ -280,14 +279,13 @@ p, li {
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 0;
-  border-radius: 15px; /* Match parent border-radius */
+  border-radius: 15px;
 }
 
 .project-card:hover::before {
   opacity: 0.1;
 }
 
-/* NEW: 3D Strip effect */
 .project-card::after {
     content: '';
     position: absolute;
@@ -313,6 +311,56 @@ p, li {
   position: relative;
   z-index: 1;
 }
+
+/* Special Project Card for Co-G App */
+.project-card-special {
+    background-image: linear-gradient(135deg, #4c1d95 0%, #2563eb 100%);
+    border: 1px solid #3b82f6;
+    border-radius: 0.75rem;
+}
+
+.project-card-special h3 {
+    color: #f8fafc;
+}
+
+.project-card-special p {
+    color: #cbd5e0;
+}
+
+.project-card-special .btn {
+    background: linear-gradient(90deg, #84cc16 0%, #14b8a6 100%);
+    box-shadow: 0 4px 15px rgba(132, 204, 22, 0.3);
+    border: none;
+}
+
+.project-card-special .btn:hover {
+    box-shadow: 0 8px 25px rgba(132, 204, 22, 0.4);
+}
+
+.project-card-special .btn-secondary {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #e2e8f0;
+    margin-left: 10px;
+}
+
+.project-card-special .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: #fff;
+}
+
+.project-card-special:hover {
+    transform: translateY(-10px) scale(1.03);
+    border-color: #84cc16;
+    box-shadow: 0 20px 40px rgba(76, 29, 149, 0.3);
+}
+
+.project-card-special::after,
+.project-card-special::before {
+    display: none;
+}
+
 
 /* Button */
 .btn {
@@ -540,8 +588,8 @@ p, li {
 .slider-container {
     position: relative;
     width: 100%;
-    height: 500px; /* Increased height for bigger cards */
-    perspective: 1200px; /* Increased perspective for more depth */
+    height: 500px;
+    perspective: 1200px;
     margin-top: 2rem;
 }
 
@@ -555,11 +603,11 @@ p, li {
 
 .slide {
     position: absolute;
-    width: 380px; /* Increased width */
-    height: 450px; /* Increased height */
+    width: 380px;
+    height: 450px;
     top: 10px;
     left: 50%;
-    margin-left: -190px; /* Half of new width */
+    margin-left: -190px;
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -567,7 +615,7 @@ p, li {
     transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
     display: flex;
     flex-direction: column;
-    -webkit-backface-visibility: hidden; /* Helps with rendering flicker */
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 }
 
@@ -736,7 +784,7 @@ p, li {
 
 @media (max-width: 992px) {
     .slide {
-        width: 280px; /* Adjusted for tablets */
+        width: 280px;
         height: 360px;
         margin-left: -140px;
     }
@@ -766,7 +814,7 @@ p, li {
     font-size: 0.8rem;
   }
   .slider-container {
-    height: 400px; /* Adjusted for smaller screens */
+    height: 400px;
   }
   .slide {
     width: 220px;
