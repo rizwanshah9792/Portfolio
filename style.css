@@ -828,6 +828,14 @@ p, li {
   }
   .prev-btn { left: 0; }
   .next-btn { right: 0; }
+
+  .project-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .project-card-special:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
 }
 
 @media (max-width: 576px) {
@@ -845,4 +853,27 @@ p, li {
     height: 270px;
     margin-left: -100px;
   }
+}
+
+/* ==========================================================================
+   9. Accessibility & Motion Preferences
+   ========================================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+.navbar-nav .nav-link:focus-visible,
+.btn:focus-visible,
+.slider-btn:focus-visible,
+.back-to-top:focus-visible {
+  outline: 3px solid #11999E;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(17, 153, 158, 0.25);
 }
